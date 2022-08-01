@@ -1,0 +1,15 @@
+version: 2
+
+# Create flight data sources
+sources:
+  # name source
+  - name: src_flight
+    description: Source data containing flight information
+    # set context
+    database: user_dkelley
+    schema: data_vault_seed_data
+    # tables
+    tables:
+      # flight data
+      - name: flights
+        identifier: "flights_table"

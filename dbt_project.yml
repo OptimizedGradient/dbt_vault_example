@@ -39,10 +39,9 @@ models:
   dbt_vault_example:
     staging:
       materialized: view
-      schema: data_vault
+      schema: staging
     data_vault:
       materialized: table
-      schema: data_vault
     raw:
       materialized: view
-      schema: data_vault_raw
+      schema: raw
