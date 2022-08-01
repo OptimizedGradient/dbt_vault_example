@@ -12,6 +12,17 @@ hashed_columns:
         - 'FLIGHT_NUM'
         - 'DEST'
         - 'ORIGIN'
+    FLIGHT_AIRCRAFT_PK:
+        - 'FLIGHT_NUM'
+        - 'DEST'
+        - 'ORIGIN'
+        - 'TAIL_NUM'
+    FLIGHT_TO_PK:
+        - 'FLIGHT_NUM'
+        - 'DEST'
+    FLIGHT_FROM_PK:
+        - 'FLIGHT_NUM'
+        - 'ORIGIN'
     FLIGHT_HASHDIFF:
         is_hashdiff: true
         columns:
