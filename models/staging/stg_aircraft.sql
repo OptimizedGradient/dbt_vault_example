@@ -1,7 +1,7 @@
 {%- set yaml_metadata -%}
 source_model: 'aircraft'
 derived_columns:
-    RECORD_SOURCE: '!RAW_FLIGHTS'
+    RCD_SOURCE: '!RAW_FLIGHTS'
     LOAD_DATE: 'AIRCRAFT_DATE'
     EFFECTIVE_FROM: 'AIRCRAFT_DATE'
 hashed_columns:

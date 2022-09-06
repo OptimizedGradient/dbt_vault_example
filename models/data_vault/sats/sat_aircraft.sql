@@ -4,7 +4,7 @@
 {% set src_payload = ["SERIAL_NUMBER", "MFR_MDL_CODE", "ENG_MFR_MDL", "YEAR_MFR"] %}
 {% set src_eff = "EFFECTIVE_FROM" %}
 {% set src_ldts = "LOAD_DATE" %}
-{% set src_source = "RECORD_SOURCE" %}
+{% set src_source = "RCD_SOURCE" %}
 
 {{ dbtvault.sat(src_pk=src_pk,
                 src_hashdiff=src_hashdiff,
