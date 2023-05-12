@@ -1,0 +1,37 @@
+name: Continuous Deployment
+
+# run this code any time there is a push to
+# a release branch
+on:
+    push:
+        branches:
+            - 'release/**'
+
+env:
+    DBT_PROFILES_DIR: ./
+
+    DBT_SNOWFLAKE_ACCOUNT: ${{ SECRETS.DBT_SNOWFLAKE_ACCOUNT }}
+    DBT_SNOWFLAKE_USERNAME: ${{ SECRETS.DBT_SNOWFLAKE_USERNAME }}
+    DBT_SNOWFLAKE_PW: ${{ SECRETS.DBT_SNOWFLAKE_PW }}
+    DBT_SNOWFLAKE_ROLE: ${{ SECRETS.DBT_SNOWFLAKE_ROLE}}
+    DBT_SNOWFLAKE_WAREHOUSE: ${{ SECRETS.DBT_SNOWFLAKE_WAREHOUSE }}
+    DBT_SNOWFLAKE_DATABASE: ${{ SECRETS.DBT_SNOWFLAKE_DATABASE }}
+    DBT_SNOWFLAKE_SCHEMA: ${{ SECRETS.DBT_SNOWFLAKE_SCHEMA }}
+
+jobs:
+    build:
+        name: dbt run job
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out
+              uses: actions/checkout@v1
+            - name: Setup Python
+              uses: actions/setup-python@v1
+                with:
+                    python-version: "3.7.x"
+            - name: Install dependencies
+              run: |
+                pip install dbt
+                dbt deps
+            - name: dbt build
+              run: dbt build

@@ -43,5 +43,5 @@ models:
     data_vault:
       materialized: table
     raw:
-      materialized: view
+      materialized: table
       schema: raw

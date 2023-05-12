@@ -2,7 +2,7 @@
 {% set src_pk = "AIRCRAFT_PK" %}
 {% set src_nk = ["TAIL_NUM"] %}
 {% set src_ldts = "LOAD_DATE" %}
-{% set src_source = "RECORD_SOURCE" %}
+{% set src_source = "RCD_SOURCE" %}
 
 {{ dbtvault.hub(src_pk=src_pk,
                 src_nk=src_nk,
