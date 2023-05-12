@@ -1,0 +1,26 @@
+name: Continuous Deployment
+
+# run this code any time there is a push to
+# a release branch
+on:
+    push:
+        branches:
+            - 'release/**'
+
+jobs:
+    build:
+        name: dbt run job
+        runs-on: ubuntu-latest
+        steps:
+            - name: git checkout
+              uses: actions/checkout@v1
+            - name: extract branch
+              run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+              id: extract_branch
+            - name: call dbt job
+              run: |
+                curl --silent --write-out '%{http_code}' --fail --output /dev/null --request POST \
+                     --url https://cloud.getdbt.com/api/v2/accounts/${{ secrets.DBT_ACCOUNT }}/jobs/${{ secrets.DBT_JOB }}/run/ \
+                     --header 'Content-Type: application/json' \
+                     --header 'Authorization: Token ${{ secrets.DBT_API_TOKEN }}' \
+                     --data '{"cause":"Kicked off via GitHub Actions", "git_branch":"${{ steps.extract_branch.outputs.branch }}"}'
